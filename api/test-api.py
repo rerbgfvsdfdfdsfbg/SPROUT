@@ -69,38 +69,3 @@ def get_all_links(domain):
             visited.add(current_url)
     
     return sorted(list(all_links))
-
-@app.route('/api/scan')
-def get_current_time():
-    domain = request.args.get('domain')
-    
-    if not domain:
-        return jsonify({
-            "error": "Параметр domain обязателен",
-            "example": "/api/scan?domain=angarasecurity.ru"
-        }), 400
-    
-    try:
-        print(f"Начинаем сканирование домена: {domain}")
-        links = get_all_links(domain)
-        print(links)
-        # Если ссылок нет, возвращаем заглушку
-        if not links:
-            links = [
-                f"{domain}/soc",
-                f"{domain}/mtdr", 
-                f"{domain}/echo"
-            ]
-        
-        return jsonify({
-            "domain": domain,
-            "total_links": len(links),
-            "sitemap": links
-        })
-        
-    except Exception as e:
-        return jsonify({
-            "error": str(e),
-            "domain": domain
-        }), 500
-        

@@ -7,14 +7,6 @@ export default function Search() {
   const domain = useSelector(state => state.domain.domain)
   let sitemap;
 
-//   useEffect(() => {
-//     fetch('/api/getsitemap?q=')
-//       .then(res => res.json()) 
-//       .then(data => {
-//         setCurrentTime(data.time);
-//       })
-//   }, [])
-
   const updateInput = event => {
     dispatch({type:"SET_DOMAIN", payload:event.target.value})
   }
@@ -26,11 +18,12 @@ export default function Search() {
       .then(data => {
         sitemap = data['sitemap']
         console.log(sitemap)
+        dispatch({type:"SET_SITEMAP", payload:sitemap})
       })
   }
 
   return (
-    <div className="container">
+    <div className="search-container">
       <form onSubmit={submitInput}>
         <input onChange={updateInput} id='input'></input>
       </form>

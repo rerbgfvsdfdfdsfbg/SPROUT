@@ -1,11 +1,4 @@
-.container {
-    width: 100%;
-    height: 60px;
-    margin-bottom: 20px;
-    /* background-color: #c3c3c300; */
-  }
-
-.title {
-    font-weight: 600;
-    font-size: 32px;
-  }
+.search-container {
+  width: 100%;
+  background-color: #c3c3c300;
+}
